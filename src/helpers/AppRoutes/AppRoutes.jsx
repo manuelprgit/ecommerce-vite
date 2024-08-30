@@ -21,7 +21,9 @@ const AppRoutes = () => {
         { path: 'sing-in', element: <SingIn /> },
         { path: '/*', element: <NotFound /> },
     ])
+    
     return routes;
+
 }
 
 export { AppRoutes }
