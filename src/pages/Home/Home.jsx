@@ -2,16 +2,17 @@ import { useState, useEffect } from "react";
 
 import { Cards } from "../../components/Cards/Cards"
 import { Layout } from "../../components/Layout/Layout"
+import { baseUrl } from "../../helpers/main";
 
 const Home = () => {
 
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        fetch('https://api.escuelajs.co/api/v1/products')
+        fetch(baseUrl + 'products')
             .then(res => res.json())
             .then(res => setItems(res));
-    }, []) 
+    }, [])
 
     return (
         <Layout>

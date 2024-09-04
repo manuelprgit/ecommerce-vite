@@ -2,6 +2,8 @@ const Cards = ({ data }) => {
     
     let {category, images, title, price} = data;
 
+    let imageUrl = images[0].split('https://')[1]
+
     return (
         <div className="bg-white w-56 h-60 rounded-lg overflow-hidden shadow-md">
             <figure className="relative mb-4 w-full h-4/5 cursor-pointer">
@@ -9,18 +11,18 @@ const Cards = ({ data }) => {
                     {category.name}
                 </span>
                 <img
-                    src={images[0]}
+                    src={`https://${imageUrl}`}
                     alt={title.substring(0,9)}
                     className="w-full h-full object-cover"
                 />
                 <div
                     className="text-black absolute top-2 right-2 bg-white rounded-full flex justify-center items-center w-6 h-6"
                 >
-                    <p className="p-0 text-xl">+</p>
+                    <p className="p-0 text-xl absolute bottom-0">+</p>
                 </div>
             </figure>
             <p className="flex justify-around">
-                <span >{title.substring(0,10)}</span>
+                <span >{title.substring(0,9)}</span>
                 <span className="font-bold">${price}</span>
             </p>
         </div>
