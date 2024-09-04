@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom"
 
 const CategoryItems = ({ name }) => {
-    console.log(name)
     const activeStyle = 'underline underline-offset-4'
 
     return (

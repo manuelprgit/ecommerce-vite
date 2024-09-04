@@ -1,9 +1,16 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { NavLink } from 'react-router-dom';
 import { baseUrl } from "../../helpers/main";
-import { CategoryItems } from "../CateoryItems/CategoryItems";
+import { CategoryItems } from "../CategoryItems/CategoryItems";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import { formatter } from "../../helpers/formatter";
 
 const Navbar = () => {
+
+    const {
+        count,
+        totalPrice
+    } = useContext(ShoppingCartContext);
 
     const [categories, useCategories] = useState([]);
 
@@ -11,7 +18,6 @@ const Navbar = () => {
         fetch(baseUrl + 'categories')
             .then(res => res.json())
             .then(res => {
-
                 useCategories(res);
             });
     }, [])
@@ -71,7 +77,7 @@ const Navbar = () => {
                             className={({ isActive }) => (isActive) ? activeStyle : undefined}
                             to='cart'
                         >
-                            🛒 Cart
+                            🛒{count} | $ {formatter.format(totalPrice)}
                         </NavLink>
                     </li>
                 </ul>
