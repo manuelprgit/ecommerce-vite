@@ -3,10 +3,10 @@ import './Navar.scss';
 
 const Navbar = () => {
 
-    const activeStyle = 'bg-sky-400 transition'
+    const activeStyle = 'underline underline-offset-4'
 
     return (
-        <nav className='flex justify-between items-center fixed z-10 w-full py-5 px-8'>
+        <nav className='flex justify-between items-center fixed top-0 z-10 w-full py-4 px-8 bg-white shadow-md'>
             <ul className='flex gap-4'>
                 <li className='font-semibold text-lg'>
                     <NavLink
@@ -70,7 +70,7 @@ const Navbar = () => {
                 <li className='font-semibold text-lg'>
                     <NavLink
                         className={({ isActive }) => (isActive) ? activeStyle : undefined}
-                        to='my-orders'
+                        to='my-order'
                     >
                         My orders
                     </NavLink>
@@ -89,6 +89,14 @@ const Navbar = () => {
                         to='sing-in'
                     >
                         Sing-In
+                    </NavLink>
+                </li>
+                <li className='font-semibold text-lg'>
+                    <NavLink
+                        className={({ isActive }) => (isActive) ? activeStyle : undefined}
+                        to='cart'
+                    >
+                        🛒 Cart
                     </NavLink>
                 </li>
             </ul>

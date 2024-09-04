@@ -1,6 +1,9 @@
+import { Layout } from "../../components/Layout/Layout" 
+
 const MyOrder = () => {
     return (
-        <h1>MyOrder</h1>
+        <Layout> 
+        </Layout>
     )
 }
 

@@ -1,0 +1,30 @@
+const Cards = ({ data }) => {
+    
+    let {category, images, title, price} = data;
+
+    return (
+        <div className="bg-white w-56 h-60 rounded-lg overflow-hidden shadow-md">
+            <figure className="relative mb-4 w-full h-4/5 cursor-pointer">
+                <span className="absolute bg-white/70 rounded-lg px-2 m-2 text-sm">
+                    {category.name}
+                </span>
+                <img
+                    src={images[0]}
+                    alt={title.substring(0,9)}
+                    className="w-full h-full object-cover"
+                />
+                <div
+                    className="text-black absolute top-2 right-2 bg-white rounded-full flex justify-center items-center w-6 h-6"
+                >
+                    <p className="p-0 text-xl">+</p>
+                </div>
+            </figure>
+            <p className="flex justify-around">
+                <span >{title.substring(0,10)}</span>
+                <span className="font-bold">${price}</span>
+            </p>
+        </div>
+    )
+}
+
+export { Cards }

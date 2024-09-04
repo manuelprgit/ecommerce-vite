@@ -1,6 +1,8 @@
+import { Layout } from "../../components/Layout/Layout"
+
 const SingIn = () => {
     return (
-        <h1>SingIn</h1>
+        <Layout>SingIn</Layout>
     )
 }
 

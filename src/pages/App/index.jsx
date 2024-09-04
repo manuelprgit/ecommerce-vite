@@ -9,9 +9,7 @@ export default function App() {
     <>
       <BrowserRouter>
         <Navbar />
-        <div className='pt-16'>
-          <AppRoutes />
-        </div>
+        <AppRoutes />
       </BrowserRouter>
     </>
   )
