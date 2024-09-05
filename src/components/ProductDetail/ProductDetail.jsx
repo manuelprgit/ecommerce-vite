@@ -3,7 +3,7 @@ import './ProductDetail.scss';
 const ProductDetail = () => {
     return(
         <aside 
-            className="product-detail flex flex-col fixed bg-white shadow-lg right-0 rounded-lg"
+            className="product-detail flex flex-col fixed bg-white right-4 rounded-lg"
         >
             <div></div>
         </aside>

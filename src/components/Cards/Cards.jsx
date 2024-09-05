@@ -13,7 +13,7 @@ const Cards = ({ data }) => {
 
     let { category, images, title, price } = data;
 
-    let imageUrl = images[0].split('https://')[1]
+    let imageUrl = images[0]//.split('https://')[1]
 
     return (
         <div className="bg-white w-56 h-60 rounded-lg overflow-hidden shadow-md">
