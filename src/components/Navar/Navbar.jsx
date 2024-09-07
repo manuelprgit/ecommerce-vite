@@ -11,7 +11,8 @@ const Navbar = () => {
 
     const {
         count,
-        totalPrice
+        totalPrice,
+        openCheckoutSideMenu
     } = useContext(ShoppingCartContext);
 
     const [categories, useCategories] = useState([]);
@@ -78,8 +79,8 @@ const Navbar = () => {
                         <div
                             className="flex items-center text-gray-500 gap-2 cursor-pointer hover:bg-slate-200 transition-all p-1 rounded-lg active:bg-slate-300"
                             to='cart'
-                            onClick={() => {
-                                //TODO: Función para abrir el modal del checkout
+                            onClick={() => { 
+                                openCheckoutSideMenu()
                             }}
                         >
                             <FaBagShopping 
