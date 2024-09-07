@@ -79,7 +79,7 @@ const Navbar = () => {
                             className="flex items-center text-gray-500 gap-2 cursor-pointer hover:bg-slate-200 transition-all p-1 rounded-lg active:bg-slate-300"
                             to='cart'
                             onClick={() => {
-                                //TODO: Funcion para abrir el modal del checkout
+                                //TODO: Función para abrir el modal del checkout
                             }}
                         >
                             <FaBagShopping 
