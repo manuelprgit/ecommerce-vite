@@ -4,6 +4,7 @@ import { Cards } from "../../components/Cards/Cards"
 import { Layout } from "../../components/Layout/Layout"
 import { baseUrl } from "../../helpers/main";
 import { ProductDetail } from "../../components/ProductDetail/ProductDetail";
+import { CheckoutSideMenu } from "../../components/CheckoutSideMenu/CheckoutSideMenu";
 
 const Home = () => {
 
@@ -25,6 +26,7 @@ const Home = () => {
                 />))}
             </div>
             <ProductDetail />
+            <CheckoutSideMenu />
         </Layout>
     )
 }
