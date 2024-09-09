@@ -1,21 +1,16 @@
 import { useContext } from 'react';
 import { FaRegCircleXmark } from "react-icons/fa6";
 import { ShoppingCartContext } from '../../context/ShoppingCartContext';
+import { OrderCards } from '../OrderCard/OrderCard';
 
 const CheckoutSideMenu = () => {
 
     const {
-        count,
-        setCount,
-        totalPrice,
-        setTotalPrice,
         isCheckoutSideMenuOpen,
-        openCheckoutSideMenu,
-        closeCheckoutSideMenu
-        // closeCheckoutDetail,
+        closeCheckoutSideMenu,
+        cartProducts
     } = useContext(ShoppingCartContext);
- 
-
+    
     return (
         <aside
             className={`${(isCheckoutSideMenuOpen) ? 'flex' : 'hidden'} pl-6 pr-6 product-detail flex-col fixed bg-white right-4 rounded-lg overflow-y-auto`}
@@ -26,9 +21,16 @@ const CheckoutSideMenu = () => {
                     className='cursor-pointer text-2xl'
                     onClick={closeCheckoutSideMenu}
                 />
-            </div> 
+            </div>
 
-            
+            <div className='flex justify-center p-2 mt-4 flex-col gap-2'>
+                {cartProducts.map(product => (<OrderCards 
+                    key={product.id}
+                    product={product}
+                />))}
+            </div>
+
+
         </aside>
     )
 }

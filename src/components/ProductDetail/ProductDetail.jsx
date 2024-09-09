@@ -28,8 +28,7 @@ const ProductDetail = () => {
     let imageUrl = (!!images[0]) ? images[0].replace(/\[|\]|\\|\"|\'/g, '') : ''
 
     const addProductToCart = (product) => {
-        setCartProducts([...cartProducts, product]);
-        console.log(cartProducts)
+        setCartProducts([...cartProducts, product]); 
     }
 
     return (
@@ -50,7 +49,7 @@ const ProductDetail = () => {
                     alt={title}
                 />
             </figure>
-            <p className='flex flex-col'>
+            <p className='flex flex-col '>
                 <span className='font-medium text-2xl mb-1'>${price}</span>
                 <span className='font-medium text-lg'>{title}</span>
                 <span className='font-light'>{description}</span>

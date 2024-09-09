@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { formatter } from "../../helpers/formatter";
-import { CiCirclePlus } from "react-icons/ci"; 
+import { CiCirclePlus } from "react-icons/ci";
 
 const Cards = ({ data }) => {
 
@@ -23,7 +23,19 @@ const Cards = ({ data }) => {
         openProductDetail();
     }
 
-    const addProductToCart = (product) => setCartProducts([...cartProducts, product]);
+    const addProductToCart = (product) => { 
+        let productRepeated = cartProducts.find(item => item.id === product.id);
+        if(!productRepeated) {
+            product['quantity'] = 1
+            setCartProducts([...cartProducts, product]);
+        }
+        else{
+            const productIndex = cartProducts.findIndex( item => item.id === productRepeated.id);
+            const newProductList = [...cartProducts];
+            newProductList[productIndex]['quantity'] += 1;
+            setCartProducts(newProductList);
+        }
+    };
 
     let imageUrl = images[0].replace(/\[|\]|\\|\"|\'/g, '');
     let substringTitle = title.substring(0, 11);

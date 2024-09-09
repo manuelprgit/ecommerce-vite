@@ -26,7 +26,6 @@ const Home = () => {
                 />))}
             </div>
             <ProductDetail />
-            <CheckoutSideMenu />
         </Layout>
     )
 }
