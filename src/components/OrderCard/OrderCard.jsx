@@ -8,6 +8,10 @@ import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 const OrderCards = ({ product }) => {
 
     const {
+        count,
+        setCount,
+        totalPrice,
+        setTotalPrice,
         cartProducts,
         setCartProducts
     } = useContext(ShoppingCartContext)
@@ -17,10 +21,18 @@ const OrderCards = ({ product }) => {
     const modifyQuantity = (isIncrementing) => {
         const index = cartProducts.findIndex(item => item.id === product.id);
         const newProductList = [...cartProducts];
-        (isIncrementing) ? newProductList[index].quantity ++ : newProductList[index].quantity --;
-        console.log(newProductList)
-        setCartProducts(newProductList);      
-    } 
+        if (isIncrementing) {
+            newProductList[index].quantity++
+            setCount(count + 1)
+            setTotalPrice(totalPrice + price);
+        }
+        else {
+            newProductList[index].quantity--;
+            setCount(count - 1)
+            setTotalPrice(totalPrice - price);
+        } 
+        setCartProducts(newProductList);
+    }
 
     const { images, price, title } = product;
 
@@ -38,31 +50,26 @@ const OrderCards = ({ product }) => {
                 <FaXmark
                     className='cursor-pointer text-2 text-red-600 absolute top-1 right-1'
                     onClick={() => {
-
+                        console.log('PENDIENTE: ELIMINAR EL ARTICULO')
                     }}
                 />
                 <p className="text-lg font-semibold text-center">${price}</p>
                 <div className="flex items-center h-6 gap-1">
                     <FaMinus
                         className="cursor-pointer text-sm"
-                        onClick={() => {modifyQuantity(false)}}
+                        onClick={() => { modifyQuantity(false) }}
                     />
-                    <input 
+                    <input
                         type="text"
                         value={getQuantityItem(product)}
                         onChange={(e) => {
-                            getQuantityItem(product) 
+                            getQuantityItem(product)
                         }}
                         className="w-8 bg-black/20 text-center text-m"
                     />
-                    {/* <div
-                        className="w-8 bg-black/20 text-center text-m"
-                    >
-                        {getQuantityItem(product)}
-                    </div> */}
-                    <FaPlus 
-                        className="cursor-pointer text-sm" 
-                        onClick={() => {modifyQuantity(true)}}
+                    <FaPlus
+                        className="cursor-pointer text-sm"
+                        onClick={() => { modifyQuantity(true) }}
                     />
                 </div>
             </div>

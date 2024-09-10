@@ -35,6 +35,8 @@ const Cards = ({ data }) => {
             newProductList[productIndex]['quantity'] += 1;
             setCartProducts(newProductList);
         }
+        setCount((count + 1));
+        setTotalPrice((totalPrice + price)); 
     };
 
     let imageUrl = images[0].replace(/\[|\]|\\|\"|\'/g, '');
@@ -60,21 +62,8 @@ const Cards = ({ data }) => {
                     <CiCirclePlus
                         className="p-0 w-6 h-6 absolute bottom-0"
                         onClick={(e) => {
-                            e.stopPropagation();
-
-                            //TODO: Terminar la multiplicacion de los precios por la cantidad;
-
-                            const index = cartProducts.findIndex(item => item.id === id);
+                            e.stopPropagation(); 
                             addProductToCart(data);
-                            console.log(cartProducts)
-                            const newProductList = [...cartProducts];
-                            console.log(newProductList)
-                            let quantity = newProductList[index]['quantity'];
-                            setCount((count + 1) * quantity);
-                            setTotalPrice((totalPrice + price) * quantity);
-
-                            //TODO: Terminar la multiplicacion de los precios por la cantidad;
-
                         }}
                     />
                 </div>
