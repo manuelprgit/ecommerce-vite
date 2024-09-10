@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa6";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { formatter } from "../../helpers/formatter";
-
+import { totalPriceResult } from "../../helpers/main";
 
 const OrderCards = ({ product }) => {
 
@@ -22,6 +22,7 @@ const OrderCards = ({ product }) => {
     const handleDelete = (id) => {
         let productFiltered = cartProducts.filter(product => product.id != id);
         setCartProducts(productFiltered);
+        console.log(totalPriceResult(cartProducts));
     }
 
     const modifyQuantity = (isIncrementing) => {
@@ -35,6 +36,9 @@ const OrderCards = ({ product }) => {
         else {
             if(newProductList[index].quantity == 1) {
                 let productFiltered = cartProducts.filter(currentProduct => currentProduct.id != product.id);
+                newProductList[index].quantity--;
+                setCount(count - 1)
+                setTotalPrice(totalPrice - price);
                 setCartProducts(productFiltered);
                 return
             }

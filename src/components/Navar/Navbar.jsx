@@ -56,6 +56,14 @@ const Navbar = () => {
                             className={({ isActive }) => (isActive) ? activeStyle : undefined}
                             to='my-order'
                         >
+                            My order
+                        </NavLink>
+                    </li>
+                    <li className='font-semibold text-lg'>
+                        <NavLink
+                            className={({ isActive }) => (isActive) ? activeStyle : undefined}
+                            to='my-orders'
+                        >
                             My orders
                         </NavLink>
                     </li>
