@@ -6,17 +6,21 @@ import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 
 const OrderCards = ({ product }) => {
- 
-    const { 
+
+    const {
         cartProducts,
         setCartProducts
-    } = useContext(ShoppingCartContext) 
+    } = useContext(ShoppingCartContext)
 
-    const getQuantityItem = (product) => {
-        
-        return cartProducts.find(item => item.id === product.id).quantity;
+    const getQuantityItem = () => cartProducts.find(item => item.id === product.id).quantity;
 
-    }
+    const modifyQuantity = (isIncrementing) => {
+        const index = cartProducts.findIndex(item => item.id === product.id);
+        const newProductList = [...cartProducts];
+        (isIncrementing) ? newProductList[index].quantity ++ : newProductList[index].quantity --;
+        console.log(newProductList)
+        setCartProducts(newProductList);      
+    } 
 
     const { images, price, title } = product;
 
@@ -39,18 +43,27 @@ const OrderCards = ({ product }) => {
                 />
                 <p className="text-lg font-semibold text-center">${price}</p>
                 <div className="flex items-center h-6 gap-1">
-                    <FaMinus className="cursor-pointer text-sm" />
-                    {/* <input
-                        type="text" 
+                    <FaMinus
+                        className="cursor-pointer text-sm"
+                        onClick={() => {modifyQuantity(false)}}
+                    />
+                    <input 
+                        type="text"
                         value={getQuantityItem(product)}
-                        className="w-10 bg-black/20 text-center text-m"
-                    /> */}
-                    <div
+                        onChange={(e) => {
+                            getQuantityItem(product) 
+                        }}
+                        className="w-8 bg-black/20 text-center text-m"
+                    />
+                    {/* <div
                         className="w-8 bg-black/20 text-center text-m"
                     >
                         {getQuantityItem(product)}
-                    </div>
-                    <FaPlus className="cursor-pointer text-sm" />
+                    </div> */}
+                    <FaPlus 
+                        className="cursor-pointer text-sm" 
+                        onClick={() => {modifyQuantity(true)}}
+                    />
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@ const Cards = ({ data }) => {
         setCartProducts
     } = useContext(ShoppingCartContext);
 
-    let { category, images, title, price } = data;
+    let { id, category, images, title, price } = data; 
 
     const showProductDetail = () => {
         setProductToShow(data);
@@ -61,9 +61,20 @@ const Cards = ({ data }) => {
                         className="p-0 w-6 h-6 absolute bottom-0"
                         onClick={(e) => {
                             e.stopPropagation();
-                            setCount(count + 1);
-                            setTotalPrice(totalPrice + price);
+
+                            //TODO: Terminar la multiplicacion de los precios por la cantidad;
+
+                            const index = cartProducts.findIndex(item => item.id === id);
                             addProductToCart(data);
+                            console.log(cartProducts)
+                            const newProductList = [...cartProducts];
+                            console.log(newProductList)
+                            let quantity = newProductList[index]['quantity'];
+                            setCount((count + 1) * quantity);
+                            setTotalPrice((totalPrice + price) * quantity);
+
+                            //TODO: Terminar la multiplicacion de los precios por la cantidad;
+
                         }}
                     />
                 </div>
