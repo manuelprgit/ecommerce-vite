@@ -28,12 +28,25 @@ const ProductDetail = () => {
     let imageUrl = (!!images[0]) ? images[0].replace(/\[|\]|\\|\"|\'/g, '') : ''
 
     const addProductToCart = (product) => {
-        setCartProducts([...cartProducts, product]); 
+        // setCartProducts([...cartProducts, product]); 
+        let productRepeated = cartProducts.find(item => item.id === product.id);
+        if(!productRepeated) {
+            product['quantity'] = 1
+            setCartProducts([...cartProducts, product]);
+        }
+        else{
+            const productIndex = cartProducts.findIndex( item => item.id === productRepeated.id);
+            const newProductList = [...cartProducts];
+            newProductList[productIndex]['quantity'] += 1;
+            setCartProducts(newProductList);
+        }
+        setCount((count + 1));
+        setTotalPrice((totalPrice + price));
     }
 
     return (
         <aside
-            className={` ${(isProductDetailOpen) ? 'flex' : 'hidden'} pl-6 pr-6 product-detail flex-col fixed bg-white right-4 rounded-lg overflow-y-auto`}
+            className={` ${(isProductDetailOpen) ? 'flex' : 'hidden'} pl-2 pr-2 product-detail flex-col fixed bg-white right-4 rounded-lg overflow-y-auto`}
         >
             <div className='flex justify-between items-center pt-4'>
                 <h2 className='font-medium text-xl'>Detalle</h2>

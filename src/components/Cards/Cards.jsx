@@ -36,7 +36,7 @@ const Cards = ({ data }) => {
             setCartProducts(newProductList);
         }
         setCount((count + 1));
-        setTotalPrice((totalPrice + price)); 
+        setTotalPrice((totalPrice + price));
     };
 
     let imageUrl = images[0].replace(/\[|\]|\\|\"|\'/g, '');
