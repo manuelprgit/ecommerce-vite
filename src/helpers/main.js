@@ -29,13 +29,13 @@ const addProductToCart = (generalContext, product) => {
     setTotalPrice((totalPrice + price));
 }
 
-const totalPriceResult = (products) => {
-    console.log(products);
-    return products.reduce((acum, product) => product.price + acum, 0)
-};
+const totalPriceResult = (products) => products.reduce((acum, product) => (product.price * product.quantity) + acum, 0);
+
+const totalArticles = (products) => products.reduce((acum, product) => product.quantity + acum, 0);
 
 export {
     baseUrl,
     addProductToCart,
-    totalPriceResult
+    totalPriceResult,
+    totalArticles
 }

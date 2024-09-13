@@ -13,6 +13,10 @@ const CheckoutSideMenu = () => {
         cartProducts
     } = useContext(ShoppingCartContext);
 
+    const handleCheckout = () => {
+      
+    }
+
     return (
         <aside
             className={`${(isCheckoutSideMenuOpen) ? 'flex' : 'hidden'} pb-28 pl-2 pr-2 product-detail flex-col fixed bg-white right-4 rounded-lg overflow-y-auto`}
