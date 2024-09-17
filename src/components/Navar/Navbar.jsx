@@ -4,8 +4,7 @@ import { baseUrl } from "../../helpers/main";
 import { CategoryItems } from "../CategoryItems/CategoryItems";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { formatter } from "../../helpers/formatter"; 
-import { FaBagShopping } from "react-icons/fa6";
-
+import { FaBagShopping } from "react-icons/fa6"; 
 
 const Navbar = () => {
 

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import './ProductDetail.scss';
 import { FaRegCircleXmark } from "react-icons/fa6";
 import { ShoppingCartContext } from '../../context/ShoppingCartContext';
+import { formatter } from '../../helpers/formatter.js'
 
 
 const ProductDetail = () => {
@@ -63,7 +64,7 @@ const ProductDetail = () => {
                 />
             </figure>
             <p className='flex flex-col '>
-                <span className='font-medium text-2xl mb-1'>${price}</span>
+                <span className='font-medium text-2xl mb-1'>${formatter.format(price)}</span>
                 <span className='font-medium text-lg'>{title}</span>
                 <span className='font-light'>{description}</span>
             </p>

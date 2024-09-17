@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import { FaRegCircleXmark } from "react-icons/fa6";
 import { ShoppingCartContext } from '../../context/ShoppingCartContext';
 import { OrderCards } from '../OrderCard/OrderCard';
@@ -8,13 +9,29 @@ const CheckoutSideMenu = () => {
 
     const {
         totalPrice,
+        setTotalPrice,
+        count,
+        setCount,
         isCheckoutSideMenuOpen,
         closeCheckoutSideMenu,
-        cartProducts
+        cartProducts,
+        order,
+        setOrder,
+        setCartProducts
     } = useContext(ShoppingCartContext);
 
     const handleCheckout = () => {
-      
+        const orderToAdd = {
+            date: new Date(),
+            products: cartProducts,
+            totalProducts: count,
+            totalPrice
+        }
+        setOrder([...order, orderToAdd]);
+        setCartProducts([]);
+        setTotalPrice(0);
+        setCount(0);
+        closeCheckoutSideMenu();
     }
 
     return (
@@ -40,14 +57,16 @@ const CheckoutSideMenu = () => {
                     <span className='pl-4'>Total:</span>
                     <span className='font-semibold text-lg'>${formatter.format(totalPrice)}</span>
                 </div>
-                <button 
-                    className='w-48 h-10 bg-blue-500 rounded-lg text-white font-semibold border-2 border-solid border-blue-900 transition active:bg-blue-500 hover:bg-blue-600'
-                    onClick={() => {
-                      handleCheckout();
-                    }}
-                >
-                    Procesar
-                </button>
+                <NavLink to="/my-order/last">
+                    <button
+                        className='w-48 h-10 bg-blue-500 rounded-lg text-white font-semibold border-2 border-solid border-blue-900 transition active:bg-blue-500 hover:bg-blue-600'
+                        onClick={() => {
+                            handleCheckout();
+                        }}
+                    >
+                        Procesar
+                    </button>
+                </NavLink>
             </div>
 
 

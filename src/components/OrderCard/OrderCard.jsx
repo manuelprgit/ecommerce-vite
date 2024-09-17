@@ -35,7 +35,7 @@ const OrderCards = ({ product }) => {
             setTotalPrice(totalPrice + price);
         }
         else {
-            if(newProductList[index].quantity == 1) {
+            if (newProductList[index].quantity == 1) {
                 let productFiltered = cartProducts.filter(currentProduct => currentProduct.id != product.id);
                 newProductList[index].quantity--;
                 setCount(count - 1)
@@ -46,7 +46,7 @@ const OrderCards = ({ product }) => {
             newProductList[index].quantity--;
             setCount(count - 1)
             setTotalPrice(totalPrice - price);
-        } 
+        }
         setCartProducts(newProductList);
     }
 
@@ -65,9 +65,7 @@ const OrderCards = ({ product }) => {
             <div className="flex flex-col gap-2">
                 <FaXmark
                     className='cursor-pointer text-2 text-red-600 absolute top-1 right-1'
-                    onClick={() => {
-                        handleDelete(id)
-                    }}
+                    onClick={() => { handleDelete(id) }}
                 />
                 <p className="text-lg font-semibold text-center">${formatter.format(price)}</p>
                 <div className="flex items-center h-6 gap-1 justify-end">
