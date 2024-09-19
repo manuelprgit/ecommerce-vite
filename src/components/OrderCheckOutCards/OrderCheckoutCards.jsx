@@ -2,14 +2,14 @@ import { formatter } from "../../helpers/formatter";
 
 const OrderCheckoutCards = ({ product }) => {
 
-    const { imageUrl, title, price, quantity } = product;
+    const { images, title, price, quantity } = product;
 
     return (
         <>
             <div className="border-2 max-w-96 border-black/20 rounded-lg pt-2 pb-2 pl-3 pr-3 w-full flex gap-2 justify-between items-center relative">
                 <div className="flex items-center gap-2">
                     <figure className="w-20 h-20 min-w-20">
-                        <img src={imageUrl} alt="" className="rounded-lg w-full h-full object-cover" />
+                        <img src={images[0].replace(/\[|\]|\\|\"|\'/g, '')} alt="" className="rounded-lg w-full h-full object-cover" />
                     </figure>
                     <p className="text-sm font-light">{title}</p>
                 </div>

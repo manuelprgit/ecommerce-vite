@@ -22,7 +22,7 @@ const CheckoutSideMenu = () => {
 
     const handleCheckout = () => {
         const orderToAdd = {
-            date: new Date(),
+            creationDate: new Date(),
             products: cartProducts,
             totalProducts: count,
             totalPrice
