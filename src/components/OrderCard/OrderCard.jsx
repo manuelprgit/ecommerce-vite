@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa6";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { formatter } from "../../helpers/formatter";
-import { totalPriceResult, totalArticles } from "../../helpers/main";
+import { totalPriceResult, totalArticles, getImage } from "../../helpers/main";
 
 const OrderCards = ({ product }) => {
 
@@ -50,15 +50,13 @@ const OrderCards = ({ product }) => {
         setCartProducts(newProductList);
     }
 
-    const { id, images, price, title } = product;
-
-    let imageUrl = (!!images[0]) ? images[0].replace(/\[|\]|\\|\"|\'/g, '') : '';
+    const { id, images, price, title } = product; 
 
     return (
         <div className="border-2 border-black/20 rounded-lg pt-2 pb-2 pl-3 pr-3 w-full flex gap-2 justify-between items-center relative">
             <div className="flex items-center gap-2">
                 <figure className="w-20 h-20 min-w-20">
-                    <img src={imageUrl} alt="" className="rounded-lg w-full h-full object-cover" />
+                    <img src={getImage(images)} alt="" className="rounded-lg w-full h-full object-cover" />
                 </figure>
                 <p className="text-sm font-light">{title}</p>
             </div>

@@ -4,6 +4,7 @@ import { FaRegCircleXmark } from "react-icons/fa6";
 import { ShoppingCartContext } from '../../context/ShoppingCartContext';
 import { OrderCards } from '../OrderCard/OrderCard';
 import { formatter } from '../../helpers/formatter';
+import { sendCarByWhatsApp } from '../../helpers/main';
 
 const CheckoutSideMenu = () => {
 

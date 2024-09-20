@@ -3,6 +3,7 @@ import './ProductDetail.scss';
 import { FaRegCircleXmark } from "react-icons/fa6";
 import { ShoppingCartContext } from '../../context/ShoppingCartContext';
 import { formatter } from '../../helpers/formatter.js'
+import { getImage } from '../../helpers/main.js';
 
 
 const ProductDetail = () => {
@@ -24,9 +25,7 @@ const ProductDetail = () => {
         title = '',
         price = '',
         description
-    } = productToShow;
-
-    let imageUrl = (!!images[0]) ? images[0].replace(/\[|\]|\\|\"|\'/g, '') : ''
+    } = productToShow; 
 
     const addProductToCart = (product) => {
         // setCartProducts([...cartProducts, product]); 
@@ -59,7 +58,7 @@ const ProductDetail = () => {
             <figure className='pb-4 pt-4'>
                 <img
                     className='w-full h-full rounded-lg'
-                    src={imageUrl}
+                    src={getImage(images)}
                     alt={title}
                 />
             </figure>

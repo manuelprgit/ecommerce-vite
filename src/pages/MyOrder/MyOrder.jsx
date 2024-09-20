@@ -4,11 +4,15 @@ import { ShoppingCartContext } from "../../context/ShoppingCartContext"
 import { OrderCheckoutCards } from "../../components/OrderCheckOutCards/OrderCheckoutCards"
 import { Link } from "react-router-dom"
 import { IoIosArrowBack } from "react-icons/io";
+import { sendCarByWhatsApp } from "../../helpers/main"
 
 
 const MyOrder = () => {
 
     const { order } = useContext(ShoppingCartContext);
+    const currentPath = window.location.pathname;
+    let index = currentPath.split('/').pop(); 
+    if(index === 'last') index = order?.length - 1;
 
     return (
         <Layout>
@@ -23,9 +27,9 @@ const MyOrder = () => {
                 <h1 className="text-4xl">Mi orden</h1>
             </div>
 
-            <div className='flex justify-center p-2 mt-4 flex-col gap-2'>
+            <div className='grid grid-cols-3 justify-center p-2 mt-4 flex-col gap-2'>
                 {
-                    order?.slice(-1)[0].products.map(item => {
+                    order?.[index]?.products.map(item => {
                         return <OrderCheckoutCards
                             key={item.id}
                             product={item}
@@ -33,6 +37,14 @@ const MyOrder = () => {
                     })
                 }
             </div>
+            <button 
+                className="bg-blue-500 w-80 h-10 rounded-lg text-lg mt-4 text-white border-2 border-black hover:bg-blue-600 transition active:bg-blue-500"
+                onClick={() => {
+                    sendCarByWhatsApp(order?.[index]?.products);
+                }}
+            >
+                Procesar orden
+            </button>
         </Layout>
     )
 }

@@ -13,17 +13,19 @@ const MyOrders = () => {
     return (
         <Layout>
             <h1 className="text-3xl">Mis ordenes</h1>
-            <div className='flex justify-center p-2 mt-4 flex-col gap-2'>
+            <div className='grid grid-cols-2 justify-center p-2 mt-4 flex-col gap-2'>
                 {
                     orders.map((order, index) => (
-                        <Link key={index}>
+                        <Link 
+                            to={`/my-order/${index}`}
+                            key={index}
+                        >
                             <OrdersCards
-                                key={order.total}
+                                key={order.total} 
                                 order={order}
                             />
                         </Link>
                     ))
-
                 }
             </div>
         </Layout>

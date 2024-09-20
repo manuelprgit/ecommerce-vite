@@ -1,8 +1,22 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { baseUrl } from "../helpers/main";
 
 const ShoppingCartContext = createContext();
 
 const ShoppingCartProvider = ({ children }) => {
+
+    //Get Articles
+    const [items, setItems] = useState([]);
+    const [filteredItems, setFilteredItems] = useState([]);
+
+    useEffect(() => {
+        fetch(baseUrl + 'products')
+            .then(res => res.json())
+            .then(res => setItems(res));
+    }, [])
+
+    //Search Article
+    const [textSearch, setTextSearch] = useState('');
 
     //Shopping Cart - Increment quantity
     const [count, setCount] = useState(0);
@@ -34,6 +48,12 @@ const ShoppingCartProvider = ({ children }) => {
         <ShoppingCartContext.Provider
             value={
                 {
+                    textSearch,
+                    setTextSearch,
+                    filteredItems,
+                    setFilteredItems,
+                    items,
+                    setItems,
                     count,
                     setCount,
                     totalPrice,

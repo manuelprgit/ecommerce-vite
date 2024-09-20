@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { formatter } from "../../helpers/formatter";
 import { CiCirclePlus } from "react-icons/ci";
+import { getImage } from "../../helpers/main";
 
 const Cards = ({ data }) => {
 
@@ -37,9 +38,8 @@ const Cards = ({ data }) => {
         }
         setCount((count + 1));
         setTotalPrice((totalPrice + price));
-    };
-
-    let imageUrl = images[0].replace(/\[|\]|\\|\"|\'/g, '');
+    }; 
+    
     let substringTitle = title.substring(0, 11);
 
     return (
@@ -52,7 +52,7 @@ const Cards = ({ data }) => {
                     {category.name}
                 </span>
                 <img
-                    src={imageUrl}
+                    src={getImage(images)}
                     alt={substringTitle}
                     className="w-full h-full object-cover"
                 />
