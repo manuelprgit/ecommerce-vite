@@ -1,16 +1,23 @@
+import { useContext } from "react"
 import { NavLink } from "react-router-dom"
+import { ShoppingCartContext } from "../../context/ShoppingCartContext"
 
-const CategoryItems = ({ name }) => {
-    const activeStyle = 'underline underline-offset-4'
+const CategoryItems = ({ category }) => {
+
+    const { 
+        setSearchByCategory
+    } = useContext(ShoppingCartContext);
+
 
     return (
         <li className='font-semibold text-lg whitespace-nowrap'>
             | <NavLink
-                to={`/${name.split(' ').join('-').toLowerCase()}`}
-                className={({ isActive }) => (isActive) ? activeStyle : undefined}
+                onClick={() => {
+                    setSearchByCategory(category.id)
+                }}
             >
-                {name}
-            </NavLink> 
+                {category.name}
+            </NavLink>
         </li>
     )
 }

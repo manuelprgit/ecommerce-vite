@@ -111,7 +111,7 @@ const Navbar = () => {
                     </li>
                     {categories?.map(category => (<CategoryItems
                         key={category.id}
-                        name={category.name}
+                        category={category}
                     />))}
                 </ul>
             </nav>

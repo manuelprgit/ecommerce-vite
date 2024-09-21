@@ -37,9 +37,10 @@ const MyOrder = () => {
                     })
                 }
             </div>
-            <button 
+            <button  
                 className="bg-blue-500 w-80 h-10 rounded-lg text-lg mt-4 text-white border-2 border-black hover:bg-blue-600 transition active:bg-blue-500"
                 onClick={() => {
+                    if(order.length <= 0) return;
                     sendCarByWhatsApp(order?.[index]?.products);
                 }}
             >

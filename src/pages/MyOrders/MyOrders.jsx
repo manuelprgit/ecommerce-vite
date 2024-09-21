@@ -8,8 +8,8 @@ const MyOrders = () => {
 
     const {
         order: orders
-    } = useContext(ShoppingCartContext);
-    console.log(orders)
+    } = useContext(ShoppingCartContext); 
+    
     return (
         <Layout>
             <h1 className="text-3xl">Mis ordenes</h1>

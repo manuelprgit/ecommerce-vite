@@ -3,6 +3,7 @@ import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { formatter } from "../../helpers/formatter";
 import { CiCirclePlus } from "react-icons/ci";
 import { getImage } from "../../helpers/main";
+ 
 
 const Cards = ({ data }) => {
 
@@ -17,29 +18,30 @@ const Cards = ({ data }) => {
         setCartProducts
     } = useContext(ShoppingCartContext);
 
-    let { id, category, images, title, price } = data; 
+    let { id, category, images, title, price } = data;
 
     const showProductDetail = () => {
         setProductToShow(data);
         openProductDetail();
     }
 
-    const addProductToCart = (product) => { 
+    const addProductToCart = (product) => {
         let productRepeated = cartProducts.find(item => item.id === product.id);
-        if(!productRepeated) {
+        if (!productRepeated) {
             product['quantity'] = 1
             setCartProducts([...cartProducts, product]);
         }
-        else{
-            const productIndex = cartProducts.findIndex( item => item.id === productRepeated.id);
+        else {
+            const productIndex = cartProducts.findIndex(item => item.id === productRepeated.id);
             const newProductList = [...cartProducts];
             newProductList[productIndex]['quantity'] += 1;
             setCartProducts(newProductList);
         }
         setCount((count + 1));
         setTotalPrice((totalPrice + price));
-    }; 
-    
+    };
+ 
+
     let substringTitle = title.substring(0, 11);
 
     return (
@@ -62,17 +64,19 @@ const Cards = ({ data }) => {
                     <CiCirclePlus
                         className="p-0 w-6 h-6 absolute bottom-0"
                         onClick={(e) => {
-                            e.stopPropagation(); 
-                            addProductToCart(data);
+                            e.stopPropagation();
+                            addProductToCart(data); 
                         }}
                     />
                 </div>
+
             </figure>
             <p className="flex justify-around">
                 <span >{substringTitle}</span>
                 <span className="font-bold">{formatter.format(price)}</span>
             </p>
         </div>
+
     )
 }
 

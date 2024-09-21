@@ -11,11 +11,34 @@ const Home = () => {
 
     const {
         items,
-        setItems,
-        textSearch,
-        setTextSearch
+        filteredItems,
+        filteredItemsByCategory,
+        searchByTitle,
+        setSearchByTitle,
     } = useContext(ShoppingCartContext);
-    
+
+    const renderView = () => {
+        if(searchByTitle?.length > 0){
+            if(filteredItems?.length > 0){
+                console.log(filteredItems)
+                return (filteredItems?.map(item => (<Cards
+                    key={item.id}
+                    data={item}
+                />)))
+            }else{
+                return (
+                    <h1>No hay articles con esta descripción!</h1>
+                )
+            }
+        }
+        else{
+            return (items?.map(item => (<Cards
+                key={item.id}
+                data={item}
+            />)))
+        }
+    }
+
     return (
         <Layout>
             <h1 className="text-3xl pb-5">Inicio</h1>
@@ -24,15 +47,13 @@ const Home = () => {
                 placeholder="Buscar Productos"
                 className="border-2 border-solid mb-6 w-80 h-10 p-4 rounded-lg text-xl"
                 onChange={(e) => {
-                    setTextSearch(e.target.value);
+
+                    setSearchByTitle(e.target.value);
                 }}
-                value={textSearch}
+                value={searchByTitle}
             />
             <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-                {items?.map(item => (<Cards
-                    key={item.id}
-                    data={item}
-                />))}
+                {renderView()}
             </div>
             <ProductDetail />
         </Layout>

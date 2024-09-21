@@ -7,16 +7,55 @@ const ShoppingCartProvider = ({ children }) => {
 
     //Get Articles
     const [items, setItems] = useState([]);
+
+    //Filter Articles
     const [filteredItems, setFilteredItems] = useState([]);
+
+    //Search Articles
+    const [searchByTitle, setSearchByTitle] = useState('');
+
+    //Filter Articles by Categories
+    const [filteredItemsByCategory, setFilteredItemsByCategory] = useState([]);
+
+    //Filter Articles by Categories
+    const [searchByCategory, setSearchByCategory] = useState('');
 
     useEffect(() => {
         fetch(baseUrl + 'products')
             .then(res => res.json())
             .then(res => setItems(res));
-    }, [])
+    }, []);
 
-    //Search Article
-    const [textSearch, setTextSearch] = useState('');
+    //Filter By Title    
+    const filterProducts = (items, searchedValue, categoryId) =>{
+        console.log(items)
+        console.log(searchByCategory)
+        return items?.filter(item => {
+
+            if(!!categoryId){
+                if (item.title.toLowerCase().includes(searchedValue.toLowerCase()) && item.category.id == categoryId) {
+                    console.log(item);
+                    return item;
+                }
+            }else{
+                item.title.toLowerCase().includes(searchedValue.toLowerCase())
+            }
+
+        });
+
+    }
+
+    useEffect(() => {
+        if (searchByTitle) setFilteredItems(filterProducts(items, searchByTitle, searchByCategory));
+    }, [items, searchByTitle]);
+
+    //Filter By Categories
+    const filteredItemsByCategories = (items, categoryId) =>
+        items?.filter(item => item.category.id === categoryId);
+
+    useEffect(() => {
+        if (searchByCategory) setFilteredItems(filterProducts(items, searchByTitle, searchByCategory));
+    }, [items, searchByCategory]);
 
     //Shopping Cart - Increment quantity
     const [count, setCount] = useState(0);
@@ -43,13 +82,12 @@ const ShoppingCartProvider = ({ children }) => {
     //Shopping Cart - Order
     const [order, setOrder] = useState([]);
 
-
     return (
         <ShoppingCartContext.Provider
             value={
                 {
-                    textSearch,
-                    setTextSearch,
+                    searchByTitle,
+                    setSearchByTitle,
                     filteredItems,
                     setFilteredItems,
                     items,
@@ -70,7 +108,11 @@ const ShoppingCartProvider = ({ children }) => {
                     cartProducts,
                     setCartProducts,
                     order,
-                    setOrder
+                    setOrder,
+                    filteredItemsByCategory,
+                    setFilteredItemsByCategory,
+                    searchByCategory,
+                    setSearchByCategory
                 }
             }
         >
