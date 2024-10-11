@@ -20,7 +20,6 @@ const Home = () => {
     const renderView = () => {
         if(searchByTitle?.length > 0){
             if(filteredItems?.length > 0){
-                console.log(filteredItems)
                 return (filteredItems?.map(item => (<Cards
                     key={item.id}
                     data={item}
@@ -52,7 +51,7 @@ const Home = () => {
                 }}
                 value={searchByTitle}
             />
-            <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
+            <div className="grid gap-4 justify-items-center grid-cols-auto-fill w-full max-w-screen-lg">
                 {renderView()}
             </div>
             <ProductDetail />

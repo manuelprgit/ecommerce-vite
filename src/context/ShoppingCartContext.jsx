@@ -18,7 +18,7 @@ const ShoppingCartProvider = ({ children }) => {
     const [filteredItemsByCategory, setFilteredItemsByCategory] = useState([]);
 
     //Filter Articles by Categories
-    const [searchByCategory, setSearchByCategory] = useState('');
+    const [categoryId, setCategoryId] = useState('');
 
     useEffect(() => {
         fetch(baseUrl + 'products')
@@ -28,34 +28,23 @@ const ShoppingCartProvider = ({ children }) => {
 
     //Filter By Title    
     const filterProducts = (items, searchedValue, categoryId) =>{
-        console.log(items)
-        console.log(searchByCategory)
         return items?.filter(item => {
 
             if(!!categoryId){
                 if (item.title.toLowerCase().includes(searchedValue.toLowerCase()) && item.category.id == categoryId) {
-                    console.log(item);
-                    return item;
+                    return item.category.id == categoryId;
                 }
             }else{
-                item.title.toLowerCase().includes(searchedValue.toLowerCase())
+                return item.title.toLowerCase().includes(searchedValue.toLowerCase())
             }
 
         });
-
     }
 
     useEffect(() => {
-        if (searchByTitle) setFilteredItems(filterProducts(items, searchByTitle, searchByCategory));
-    }, [items, searchByTitle]);
-
-    //Filter By Categories
-    const filteredItemsByCategories = (items, categoryId) =>
-        items?.filter(item => item.category.id === categoryId);
-
-    useEffect(() => {
-        if (searchByCategory) setFilteredItems(filterProducts(items, searchByTitle, searchByCategory));
-    }, [items, searchByCategory]);
+        let result = filterProducts(items, searchByTitle); 
+        if (searchByTitle) setFilteredItems(result); 
+    }, [items, searchByTitle]); 
 
     //Shopping Cart - Increment quantity
     const [count, setCount] = useState(0);
@@ -110,9 +99,7 @@ const ShoppingCartProvider = ({ children }) => {
                     order,
                     setOrder,
                     filteredItemsByCategory,
-                    setFilteredItemsByCategory,
-                    searchByCategory,
-                    setSearchByCategory
+                    setFilteredItemsByCategory
                 }
             }
         >

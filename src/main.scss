@@ -35,3 +35,7 @@
     z-index: 50;
     box-shadow: 3px 3px 10px 3px #00000030;
 }
+
+.grid-cols-auto-fill{
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+}
